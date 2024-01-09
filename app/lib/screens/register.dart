@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/auth.dart';
+import '../constants/colors.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -18,7 +19,10 @@ class _RegisterState extends State<Register> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title: Text('snapTask'),
+        backgroundColor: stBGColor,
+        foregroundColor: stDarkerPurple,
+        elevation: 0,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

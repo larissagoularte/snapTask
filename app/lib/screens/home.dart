@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../widgets/task.dart';
 import '../model/task-model.dart';
-import '../screens/login.dart';
 
 class Home extends StatefulWidget {
-   Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -16,9 +15,8 @@ class _HomeState extends State<Home> {
   List<TaskModel> _foundTask = [];
   final _taskController = TextEditingController();
 
-
   @override
-  void initState(){
+  void initState() {
     _foundTask = taskList;
     super.initState();
   }
@@ -43,16 +41,14 @@ class _HomeState extends State<Home> {
                         child: Text(
                           'Todas as tarefas',
                           style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w500),
+                              fontSize: 30, fontWeight: FontWeight.w500),
                         ),
                       ),
-
-                      for ( TaskModel todo in _foundTask)
+                      for (TaskModel todo in _foundTask)
                         Task(
-                            todo: todo,
-                            onTaskChanged: _handleTaskChange,
-                            onTaskDeleted: _deleteTask,
+                          todo: todo,
+                          onTaskChanged: _handleTaskChange,
+                          onTaskDeleted: _deleteTask,
                         )
                     ],
                   ),
@@ -60,66 +56,60 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-
           Align(
               alignment: Alignment.bottomCenter,
-              child: Row(children: [
-                Expanded(
-                  child: Container(
-                      margin: EdgeInsets.only(
-                        bottom: 20,
-                        right: 20,
-                        left: 20,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: const [BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 10.0,
-                          spreadRadius: 0.0,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                        margin: EdgeInsets.only(
+                          bottom: 20,
+                          right: 20,
+                          left: 20,
                         ),
-                        ],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextField(
-                        controller: _taskController,
-                        decoration: InputDecoration(
-                            hintText: 'Adicionar nova tarefa',
-                            border: InputBorder.none
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 5,
                         ),
-                      )
-                  ),
-                ),
-
-                Container(
-                  margin: EdgeInsets.only(
-                      bottom: 20,
-                      right: 20
-                  ),
-                  child: ElevatedButton(
-                      child: Text(
-                        '+',
-                        style: TextStyle(
-                          fontSize: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(0.0, 0.0),
+                              blurRadius: 10.0,
+                              spreadRadius: 0.0,
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ),
-                      onPressed: () {
-                        _addTask(_taskController.text);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: stBlue,
-                        minimumSize: Size(60, 60),
-                        elevation: 10,
-                      )
+                        child: TextField(
+                          controller: _taskController,
+                          decoration: InputDecoration(
+                              hintText: 'Adicionar nova tarefa',
+                              border: InputBorder.none),
+                        )),
                   ),
-                )
-              ],)
-          ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20, right: 20),
+                    child: ElevatedButton(
+                        child: Text(
+                          '+',
+                          style: TextStyle(
+                            fontSize: 40,
+                          ),
+                        ),
+                        onPressed: () {
+                          _addTask(_taskController.text);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: stBlue,
+                          minimumSize: Size(60, 60),
+                          elevation: 10,
+                        )),
+                  )
+                ],
+              )),
         ],
       ),
     );
@@ -141,18 +131,20 @@ class _HomeState extends State<Home> {
     setState(() {
       taskList.add(TaskModel(
           id: DateTime.now().millisecondsSinceEpoch.toString(),
-          taskText: task
-      ));
+          taskText: task));
     });
     _taskController.clear();
   }
 
   void _searchTask(String string) {
     List<TaskModel> results = [];
-    if ( string.isEmpty) {
+    if (string.isEmpty) {
       results = taskList;
     } else {
-      results = taskList.where((task) => task.taskText!.toLowerCase().contains(string.toLowerCase())).toList();
+      results = taskList
+          .where((task) =>
+              task.taskText!.toLowerCase().contains(string.toLowerCase()))
+          .toList();
     }
 
     setState(() {
@@ -164,9 +156,7 @@ class _HomeState extends State<Home> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20)
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(20)),
       child: TextField(
         onChanged: (value) => _searchTask(value),
         decoration: InputDecoration(
@@ -176,10 +166,7 @@ class _HomeState extends State<Home> {
             color: stBlack,
             size: 20,
           ),
-          prefixIconConstraints: BoxConstraints(
-              maxHeight: 20,
-              minWidth: 25
-          ),
+          prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 25),
           border: InputBorder.none,
           hintText: 'Pesquisar',
           hintStyle: TextStyle(color: stGrey),
@@ -192,22 +179,20 @@ class _HomeState extends State<Home> {
     return AppBar(
       backgroundColor: stBGColor,
       elevation: 0,
-      title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(
-              Icons.menu,
-              color: stBlack,
-              size: 30,
-            ),
-            Container(
-              height: 40,
-              width: 40,
-              child: ClipRRect(
-                child: Image.asset('assets/images/verifica.png'),
-              ),
-            ),
-          ]),
+      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Icon(
+          Icons.menu,
+          color: stBlack,
+          size: 30,
+        ),
+        Container(
+          height: 40,
+          width: 40,
+          child: ClipRRect(
+            child: Image.asset('assets/images/verifica.png'),
+          ),
+        ),
+      ]),
     );
   }
 }

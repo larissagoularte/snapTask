@@ -19,21 +19,23 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return ChangeNotifierProvider<AuthProvider>(
-        create: (_) => AuthProvider(),
-        child: MaterialApp(
-          title: 'snapTask',
-          //theme: ThemeData,
-          home: Consumer<AuthProvider>(
-            builder: (context, authProvider, __) {
-              return authProvider.isAuthenticated ? Home() : Login();
-            },
-          ),
-          routes: {
-            '/register': (context) => Register(),
-            '/login': (context) => Login(),
-            '/home': (context) => authMiddleware(context, Home()),
+      create: (_) => AuthProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'snapTask',
+        //theme: ThemeData,
+        home: Consumer<AuthProvider>(
+          builder: (context, authProvider, __) {
+            return authProvider.isAuthenticated ? Home() : Login();
           },
-        ));
+        ),
+        routes: {
+          '/register': (context) => Register(),
+          '/login': (context) => Login(),
+          '/home': (context) => authMiddleware(context, Home()),
+        },
+      ),
+    );
   }
 
   Widget authMiddleware(BuildContext context, Widget page) {
