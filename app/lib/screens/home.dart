@@ -143,7 +143,7 @@ class _HomeState extends State<Home> {
     } else {
       results = taskList
           .where((task) =>
-              task.taskText!.toLowerCase().contains(string.toLowerCase()))
+              task.taskText.toLowerCase().contains(string.toLowerCase()))
           .toList();
     }
 
