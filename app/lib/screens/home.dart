@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
                           _addTask(_taskController.text);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: stBlue,
+                          backgroundColor: stLightPurple,
                           minimumSize: Size(60, 60),
                           elevation: 10,
                         )),
@@ -177,22 +177,33 @@ class _HomeState extends State<Home> {
 
   AppBar _buildAppBar() {
     return AppBar(
+      titleSpacing: 100,
+      title: RichText(
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(
+                text: 'snap',
+                style: TextStyle(
+                  color: stLightPurple,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                )),
+            TextSpan(
+              text: 'Task',
+              style: TextStyle(
+                color: stDarkerPurple,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+        //'snapTask',
+        //tyle: TextStyle(fontSize: 43, fontWeight: FontWeight.w500),
+      ),
       backgroundColor: stBGColor,
       elevation: 0,
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Icon(
-          Icons.menu,
-          color: stBlack,
-          size: 30,
-        ),
-        Container(
-          height: 40,
-          width: 40,
-          child: ClipRRect(
-            child: Image.asset('assets/images/verifica.png'),
-          ),
-        ),
-      ]),
+      foregroundColor: stDarkerPurple,
     );
   }
 }

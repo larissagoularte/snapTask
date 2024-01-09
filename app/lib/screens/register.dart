@@ -19,10 +19,11 @@ class _RegisterState extends State<Register> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('snapTask'),
+        title: Text('Registo'),
         backgroundColor: stBGColor,
         foregroundColor: stDarkerPurple,
         elevation: 0,
+        centerTitle: true,
       ),
       body: Container(
         color: stBGColor,

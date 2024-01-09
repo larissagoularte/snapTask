@@ -7,7 +7,12 @@ class Task extends StatelessWidget {
   final onTaskChanged;
   final onTaskDeleted;
 
-  const Task({Key? key, required this.todo, required this.onTaskChanged, required this.onTaskDeleted}) : super(key: key);
+  const Task(
+      {Key? key,
+      required this.todo,
+      required this.onTaskChanged,
+      required this.onTaskDeleted})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +23,26 @@ class Task extends StatelessWidget {
           //print('click');
           onTaskChanged(todo);
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         tileColor: Colors.white,
         leading: Icon(
           todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
-          color: stBlue,
+          color: stLightPurple,
         ),
         title: Text(
-            todo.taskText,
-            style: TextStyle(
-                fontSize: 16,
-                color: stBlack,
-              decoration: todo.isDone? TextDecoration.lineThrough : null,
-            ),
+          todo.taskText,
+          style: TextStyle(
+            fontSize: 16,
+            color: stBlack,
+            decoration: todo.isDone ? TextDecoration.lineThrough : null,
+          ),
         ),
         trailing: Container(
           padding: EdgeInsets.all(0),
           margin: EdgeInsets.symmetric(vertical: 12),
           height: 35,
-            width: 35,
+          width: 35,
           decoration: BoxDecoration(
             color: stRed,
             borderRadius: BorderRadius.circular(5),
