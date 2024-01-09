@@ -24,13 +24,48 @@ class _RegisterState extends State<Register> {
         foregroundColor: stDarkerPurple,
         elevation: 0,
       ),
-      body: Padding(
+      body: Container(
+        color: stBGColor,
         padding: EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text('Crie uma conta para começar.'),
+            Image.asset(
+              'assets/images/logo.png',
+              height: 200,
+            ),
+            RichText(
+              text: TextSpan(
+                children: <TextSpan>[
+                  TextSpan(
+                      text: 'snap',
+                      style: TextStyle(
+                        color: stLightPurple,
+                        fontSize: 40,
+                        fontWeight: FontWeight.normal,
+                      )),
+                  TextSpan(
+                    text: 'Task',
+                    style: TextStyle(
+                      color: stDarkerPurple,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              //'snapTask',
+              //tyle: TextStyle(fontSize: 43, fontWeight: FontWeight.w500),
+            ),
             SizedBox(height: 20),
+            Text(
+              'Bem vindo! Crie uma conta para começar.',
+              style: TextStyle(
+                fontSize: 17,
+                color: stGrey,
+              ),
+            ),
             TextFormField(
               controller: _nameController,
               decoration: InputDecoration(labelText: 'Nome'),
@@ -65,7 +100,7 @@ class _RegisterState extends State<Register> {
               },
               child: Text('Registrar'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green, // cor de fundo do botão
+                backgroundColor: stDarkerPurple, // cor de fundo do botão
                 minimumSize:
                     Size(double.infinity, 50), // largura e altura mínimas
               ),
@@ -76,7 +111,25 @@ class _RegisterState extends State<Register> {
                 // Redirecione para a tela de login
                 Navigator.pushReplacementNamed(context, '/login');
               },
-              child: Text('Já tem uma conta? Faça login.'),
+              child: RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Já tem uma conta? Faça ',
+                      style: TextStyle(
+                        color: stGrey,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'login.',
+                      style: TextStyle(
+                        color: stLightPurple,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
